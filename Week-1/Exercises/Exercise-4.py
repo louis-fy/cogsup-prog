@@ -18,7 +18,7 @@ dct = {'a': 3, 'b': 7, 'c': -2, 'd': 10, 'e': 5}
 
 print("Exercise 4.1")
 
-pass
+print(sum(dct.values()))
 
 print("---")
 
@@ -32,7 +32,7 @@ Print the key that has the largest value in dct.
 
 print("Exercise 4.2")
 
-pass
+print(max(dct, key=dct.get))
 
 print("---")
 
@@ -46,7 +46,8 @@ Create a new dictionary with the squares of all the values in dct.
 
 print("Exercise 4.3")
 
-pass
+new_dct_1 = {i:j for i,j in zip(dct.keys(), [pow(k,2) for k in dct.values()])}
+print(new_dct_1)
 
 print("---")
 
@@ -60,7 +61,9 @@ Print only the keys in dct whose values are even numbers.
 
 print("Exercise 4.4")
 
-pass
+for key,val in dct.items():
+    if val % 2 == 0:
+       print(key)
 
 print("---")
 
@@ -74,7 +77,8 @@ Create a new dictionary that swaps the keys and values in dct.
 
 print("Exercise 4.5")
 
-pass
+new_dct_2 = {i:j for i,j in zip(dct.values(), dct.keys())}
+print(new_dct_2)
 
 print("---")
 
@@ -91,7 +95,10 @@ s = 'ccctcctttttcc'
 
 print("Exercise 4.6")
 
-pass
+letter_count = {}
+for i in s:
+    letter_count[i] = letter_count.get(i, 0) + 1
+print(letter_count)
 
 print("---")
 
@@ -110,7 +117,7 @@ responses = 'jjjpjjpppppjj'
 
 print("Exercise 4.7")
 
-pass
+print([responses_mapping[i] for i in responses])
 
 print("---")
 
@@ -125,7 +132,8 @@ Merge the following two dictionaries into one:
 
 print("Exercise 4.8")
 
-pass
+new_dct_3 = {'a': 1, 'b': 2} | {'c': 3, 'd': 4}
+print(new_dct_3)
 
 print("---")
 
@@ -140,7 +148,9 @@ create a new one whose keys are sorted alphabetically.
 
 print("Exercise 4.9")
 
-pass
+new_dct_4 = {'zebra': 10, 'dolphin': 25, 'alligator': 3, 'monkey': 5, 'pig': 9}
+new_dct_4 = dict(sorted(new_dct_4.items()))
+print(new_dct_4)
 
 print("---")
 
@@ -155,6 +165,8 @@ create a new one whose values appear in increasing order.
 
 print("Exercise 4.10")
 
-pass
+new_dct_5 = {'zebra': 10, 'dolphin': 25, 'alligator': 3, 'monkey': 5, 'pig': 9}
+new_dct_5 = dict(sorted(new_dct_5.items(), key=lambda i: i[1]))
+print(new_dct_5)
 
 print("---")
