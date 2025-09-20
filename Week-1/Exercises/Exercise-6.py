@@ -6,10 +6,21 @@ Hint: Write an is_factor helper function.
 
 def is_factor(d, n):
     """True iff (if and only if) d is a divisor of n."""
-    pass
+    return True if n % d == 0 else False
 
 def is_prime(n):
-    pass
+    prime = True
+    if n == 1:
+        prime = False
+    else:
+        for i in range(2, int(n**0.5+1)):
+            if is_factor(i, n):
+                prime = False
+                break
+    return prime
 
-list_of_primes = []
+def find_primes(lowerbound, upperbound):
+    return [n for n in range(lowerbound, upperbound + 1) if is_prime(n)]
+
+list_of_primes = find_primes(1, 10000)
 print(list_of_primes)
