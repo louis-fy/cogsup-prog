@@ -3,26 +3,26 @@ from expyriment.misc import constants
 
 #control.set_develop_mode()
 
-def get_grid(w, sq_size, sq_colour, spacing, rows, cols):
-    dist = round(w*(sq_size+spacing)) # Determine distance between each square (space between square + side length) relative to screen size
-    side = round(w*sq_size) # Determine square side length relative to screen size
+exp = design.Experiment(name = "Hermann Grid Illusion", background_colour=constants.C_WHITE)
+control.initialize(exp)
+
+def get_grid(sq_size, sq_colour, spacing, rows, cols):
+    dist = sq_size+spacing # Determine distance between each square (space between square + side length)
     mid_col = (cols-1)/2 # Index of middle column (average of both middle indexes if even)
     mid_row = (rows-1)/2 # Index of middle row (average of both middle indexes if even)
     squares = []
     for i in range(rows):
         for j in range(cols):
             # Square position as a factor of distance from middle row and column
-            squares.append(stimuli.Rectangle(position=((j-mid_col)*dist,(i-mid_row)*dist),size=(side,side),colour=sq_colour))
+            squares.append(stimuli.Rectangle(position=((j-mid_col)*dist,(i-mid_row)*dist),size=(sq_size,sq_size),colour=sq_colour))
     return squares
 
-def create_exp(sq_size, spacing, sq_colour, back_colour, rows, cols):
-    exp = design.Experiment(name = "Hermann Grid Illusion", background_colour=back_colour) # Use given background colour
-    control.initialize(exp)
-    w, _ = exp.screen.size # Get screen size for square length and spacing
-    squares = get_grid(w, sq_size, sq_colour, spacing, rows, cols) # Create a matrix of square stimuli based on given parameters
+def set_exp(exp, sq_size=100, sq_colour=constants.C_BLACK, spacing=20, rows=4, cols=4, back_colour=constants.C_WHITE):
+    exp.screen.colour = back_colour # Set background colour
+    squares = get_grid(sq_size, sq_colour, spacing, rows, cols) # Create a matrix of square stimuli based on given parameters
     return exp, squares
 
-exp, squares = create_exp(.1, .03, constants.C_BLACK, constants.C_WHITE, 5, 5)
+exp, squares = set_exp(exp)
 
 control.start()
 
