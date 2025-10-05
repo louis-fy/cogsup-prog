@@ -2,10 +2,14 @@ from expyriment import design, control, stimuli
 import random
 
 def load(stims):
+    if not stims:
+        raise ValueError('Stimuli list must be nonempty.')
     for stim in stims:
         stim.preload()
 
 def timed_draw(stims):
+    if not stims:
+        raise ValueError('Simuli list must be nonempty.')
     t0 = exp.clock.time
     for i, stim in enumerate(stims):
         stim.present(clear=(i == 0), update=(i == len(stims) - 1))
@@ -20,7 +24,7 @@ def present_for(stims, t=1000):
 """ Test functions """
 exp = design.Experiment()
 
-control.set_develop_mode()
+#control.set_develop_mode()
 control.initialize(exp)
 
 fixation = stimuli.FixCross()
