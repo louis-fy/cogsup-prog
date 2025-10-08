@@ -7,7 +7,10 @@ def load(stims):
     for stim in stims:
         stim.preload()
 
-def timed_draw(stims):
+def get_time(frames):
+    return frames * 1000/60
+
+def timed_draw(exp, stims):
     if not stims:
         raise ValueError('Simuli list must be nonempty.')
     t0 = exp.clock.time
@@ -16,37 +19,42 @@ def timed_draw(stims):
     t1 = exp.clock.time
     return t1 - t0
 
-def present_for(stims, t=1000):
-    dt = timed_draw(stims)
-    exp.clock.wait(t - dt)
+def present_for(exp, stims, frames):
+    dt = timed_draw(exp, stims)
+    if dt > 0:
+        t = get_time(frames)
+        exp.clock.wait(t - dt)
 
+def main():
+    """ Test functions """
+    exp = design.Experiment()
 
-""" Test functions """
-exp = design.Experiment()
+    control.set_develop_mode()
+    control.initialize(exp)
 
-#control.set_develop_mode()
-control.initialize(exp)
+    fixation = stimuli.FixCross()
+    load([fixation])
 
-fixation = stimuli.FixCross()
-load([fixation])
+    n = 20
+    positions = [(random.randint(-300, 300), random.randint(-300, 300)) for _ in range(n)]
+    squares = [stimuli.Rectangle(size=(50, 50), position = pos) for pos in positions]
+    load(squares)
 
-n = 20
-positions = [(random.randint(-300, 300), random.randint(-300, 300)) for _ in range(n)]
-squares = [stimuli.Rectangle(size=(50, 50), position = pos) for pos in positions]
-load(squares)
+    durations = []
 
-durations = []
+    t0 = exp.clock.time
+    for square in squares:
+        if not square.is_preloaded:
+            print("Preloading function not implemneted correctly.")
+        stims = [fixation, square] 
+        present_for(stims, 500)
+        t1 = exp.clock.time
+        durations.append(t1-t0)
+        t0 = t1
 
-t0 = exp.clock.time
-for square in squares:
-    if not square.is_preloaded:
-        print("Preloading function not implemneted correctly.")
-    stims = [fixation, square] 
-    present_for(stims, 500)
-    t1 = exp.clock.time
-    durations.append(t1-t0)
-    t0 = t1
+    print(durations)
 
-print(durations)
+    control.end()
 
-control.end()
+if __name__ == "__main__":
+    main()
