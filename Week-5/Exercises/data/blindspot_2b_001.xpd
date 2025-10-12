@@ -1,0 +1,115 @@
+#Expyriment 1.0.0 (Python 3.13.7), .xpd-file, coding: UTF-8
+#date: Sun Oct 12 2025 11:54:07
+#--EXPERIMENT INFO
+#e mainfile: blindspot_2b.py
+#e sha1: 8ce652
+#e modules: 
+#e Experiment: Blindspot
+#e no between subject factors
+#--SUBJECT INFO
+#s id: 1
+subject_id,eye,keypress,radius,x_coord,y_coord
+1,left,left,75,-10,0
+1,left,left,75,-20,0
+1,left,left,75,-30,0
+1,left,left,75,-40,0
+1,left,left,75,-50,0
+1,left,left,75,-60,0
+1,left,left,75,-70,0
+1,left,left,75,-80,0
+1,left,left,75,-90,0
+1,left,left,75,-100,0
+1,left,left,75,-110,0
+1,left,left,75,-120,0
+1,left,left,75,-130,0
+1,left,left,75,-140,0
+1,left,left,75,-150,0
+1,left,left,75,-160,0
+1,left,left,75,-170,0
+1,left,left,75,-180,0
+1,left,left,75,-190,0
+1,left,left,75,-200,0
+1,left,left,75,-210,0
+1,left,left,75,-220,0
+1,left,left,75,-230,0
+1,left,2,82.5,-230,0
+1,left,1,74.5,-230,0
+1,left,1,67.5,-230,0
+1,left,1,61.5,-230,0
+1,left,1,55.5,-230,0
+1,left,1,50.5,-230,0
+1,left,1,45.5,-230,0
+1,left,down,45.5,-230,-10
+1,left,down,45.5,-230,-20
+1,left,down,45.5,-230,-30
+1,left,down,45.5,-230,-40
+1,left,down,45.5,-230,-50
+1,left,down,45.5,-230,-60
+1,left,down,45.5,-230,-70
+1,left,down,45.5,-230,-80
+1,left,down,45.5,-230,-90
+1,left,down,45.5,-230,-100
+1,left,1,41.5,-230,-100
+1,left,1,37.5,-230,-100
+1,left,1,34.5,-230,-100
+1,left,left,34.5,-240,-100
+1,left,left,34.5,-250,-100
+1,left,left,34.5,-260,-100
+1,left,left,34.5,-270,-100
+1,left,left,34.5,-280,-100
+1,left,left,34.5,-290,-100
+1,left,down,34.5,-290,-110
+1,left,down,34.5,-290,-120
+1,left,1,31.5,-290,-120
+1,left,1,28.5,-290,-120
+1,left,left,28.5,-300,-120
+1,right,right,75,10,0
+1,right,right,75,20,0
+1,right,right,75,30,0
+1,right,right,75,40,0
+1,right,right,75,50,0
+1,right,right,75,60,0
+1,right,right,75,70,0
+1,right,right,75,80,0
+1,right,right,75,90,0
+1,right,right,75,100,0
+1,right,right,75,110,0
+1,right,right,75,120,0
+1,right,right,75,130,0
+1,right,1,68,130,0
+1,right,1,62,130,0
+1,right,1,56,130,0
+1,right,1,51,130,0
+1,right,1,46,130,0
+1,right,1,42,130,0
+1,right,1,38,130,0
+1,right,right,38,140,0
+1,right,right,38,150,0
+1,right,right,38,160,0
+1,right,right,38,170,0
+1,right,right,38,180,0
+1,right,right,38,190,0
+1,right,right,38,200,0
+1,right,right,38,210,0
+1,right,right,38,220,0
+1,right,down,38,220,-10
+1,right,down,38,220,-20
+1,right,down,38,220,-30
+1,right,down,38,220,-40
+1,right,down,38,220,-50
+1,right,down,38,220,-60
+1,right,down,38,220,-70
+1,right,down,38,220,-80
+1,right,right,38,230,-80
+1,right,right,38,240,-80
+1,right,1,35,240,-80
+1,right,2,38.5,240,-80
+1,right,2,42.35,240,-80
+1,right,2,46.58500000000001,240,-80
+1,right,2,51.24350000000001,240,-80
+1,right,2,56.36785000000002,240,-80
+1,right,2,62.00463500000003,240,-80
+1,right,1,56.00463500000003,240,-80
+1,right,1,51.00463500000003,240,-80
+1,right,1,46.00463500000003,240,-80
+1,right,1,42.00463500000003,240,-80

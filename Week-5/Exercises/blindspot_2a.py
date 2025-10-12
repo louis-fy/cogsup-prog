@@ -5,6 +5,7 @@ from expyriment.misc.constants import C_WHITE, C_BLACK, K_SPACE, K_DOWN, K_UP, K
 exp = design.Experiment(name="Blindspot", background_colour=C_WHITE, foreground_colour=C_BLACK)
 control.set_develop_mode()
 control.initialize(exp)
+exp.add_data_variable_names(['eye','radius','x_coord','y_coord'])
 
 """ Stimuli """
 def make_circle(r, pos=(0,0)):
@@ -60,6 +61,10 @@ def run_trial(side='L'):
         key, _ = exp.keyboard.wait(keys=[K_DOWN, K_UP, K_LEFT, K_RIGHT, K_SPACE, 49, 50])
         coords = {K_DOWN:(0,-10), K_UP:(0,10), K_LEFT:(-10,0), K_RIGHT:(10,0)}
         if key == K_SPACE:
+            exp.data.add(['left' if side == 'L' else 'right',
+                          circle.radius,
+                          circle.position[0],
+                          circle.position[1]])
             break
         elif key == 49:
             circle = make_circle(circle.radius-circle.radius//10, circle.position)
