@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+    <script src="https://unpkg.com/jspsych@8.0.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
+    <link href="https://unpkg.com/jspsych@8.0.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+  <script type="text/javascript">
+    const KEYS = ['1', '2', '3', '4'];
+    const COLOURS = ['red', 'blue', 'green', 'orange'];
+    const N_TRIALS = 12;
+    const intertrial_duration = 50;
+
+    const jsPsych = initJsPsych({
+      on_finish: function(){
+        jsPsych.data.get().localSave("csv", "demo_jspsych_results.csv");
+      }
+    });
+
+    const instructions = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <p>Stroop Task</p>
+        <p>You will a word displayed on the screen. You will have to select ${KEYS[0]} for RED, 
+          ${KEYS[1]} for BLUE, ${KEYS[2]} for GREEN and ${KEYS[3]} for ORANGE.</p>
+        <p><b>Try to answer as fast as you can!</b></p>
+        <p>Press any key to continue.</p>
+        `
+    };
+
+    function remove(array, e) {
+      const id = array.indexOf(e);
+      let shuffledArray = jsPsych.randomization.shuffle(array.toSpliced(id, 1));
+      return shuffledArray[0];
+    };
+
+    let trials = jsPsych.randomization.repeat(COLOURS, N_TRIALS/COLOURS.length);
+
+    let timeline = [instructions];
+
+    for (let trial of trials) {
+      let match_id = jsPsych.randomization.randomInt(0,1);
+
+      timeline.push({
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `<p style='color: ${ trial }'>${(match_id == 0) ? trial : remove(COLOURS, trial)}</p>`,
+        choices: KEYS
+      });
+
+      timeline.push({
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: '',
+        trial_duration: intertrial_duration,
+        choices: []
+      });
+    }
+
+    jsPsych.run(timeline);
+  </script>
+</html>
