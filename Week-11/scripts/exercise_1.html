@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+    <script src="https://unpkg.com/jspsych@8.0.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
+    <link href="https://unpkg.com/jspsych@8.0.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+  <script type="text/javascript">
+    const n_trials = 6;
+    const keys = ['F','J'];
+    const intertrial_duration = 100;
+
+    const jsPsych = initJsPsych({
+      on_finish: function(){
+        jsPsych.data.get().localSave("csv", "demo_jspsych_results.csv");
+      }
+    });
+
+    const helloTrial = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: 'In this task, you will have to press the key you see on screen!'
+    };
+
+    let inputkey_order = jsPsych.randomization.repeat(keys, n_trials/keys.length);
+    let inputkey_case = [];
+
+    for (let k = 0; k < inputkey_order.length; k += 1) {
+      inputkey_case.push(k % 2 == 0 ? inputkey_order[k].toLowerCase() : inputkey_order[k]);
+    }
+
+    let timeline = [helloTrial];
+
+    for (let inputkey of inputkey_case) {
+      timeline.push({
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: inputkey,
+        post_trial_gap: intertrial_duration,
+        choices: keys,
+        data: {expected_key: inputkey}
+      });
+    }
+
+    jsPsych.run(timeline);
+  </script>
+</html>
